@@ -84,13 +84,13 @@ export default function CreditList() {
           <table className="w-full text-sm text-gray-700">
             <thead>
               <tr className="bg-gray-50 text-xs capitalize tracking-wide text-gray-400 border-b border-gray-200">
-                <th className="px-4 py-3 text-left font-medium">Cliente</th>
                 <th className="px-4 py-3 text-left font-medium">ID</th>
-                <th className="px-4 py-3 text-left font-medium">Valor</th>
-                <th className="px-4 py-3 text-left font-medium">Tasa</th>
+                <th className="px-4 py-3 text-left font-medium">Cliente</th>
+                <th className="px-4 py-3 text-left font-medium">Monto</th>
                 <th className="px-4 py-3 text-left font-medium">Plazo</th>
-                <th className="px-4 py-3 text-left font-medium">Comercial</th>
-                <th className="px-4 py-3 text-left font-medium">Fecha</th>
+                <th className="px-4 py-3 text-left font-medium">Interes</th>
+                {/* <th className="px-4 py-3 text-left font-medium">Comercial</th> */}
+                {/* <th className="px-4 py-3 text-left font-medium">Fecha</th> */}
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -103,13 +103,13 @@ export default function CreditList() {
               ) : (
                 creditos.map((c) => (
                   <tr key={c.id} className="hover:bg-gray-50 capitalize transition">
+                    <td className="px-4 py-3 text-gray-500">{c.id}</td>
                     <td className="px-4 py-3 font-medium text-gray-800">{c.nombre_cliente}</td>
-                    <td className="px-4 py-3 text-gray-500">{c.identificacion}</td>
                     <td className="px-4 py-3 font-medium text-gray-800"> {new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", minimumFractionDigits: 0 }).format(c.valor)}</td>
-                    <td className="px-4 py-3">{c.tasa_interes}%</td>
                     <td className="px-4 py-3">{c.plazo_meses} m</td>
-                    <td className="px-4 py-3">{c.comercial}</td>
-                    <td className="px-4 py-3 text-gray-400">{new Date(c.fecha_registro).toLocaleDateString()}</td>
+                    <td className="px-4 py-3">{Math.round(c.tasa_interes)}%</td>
+                    {/* <td className="px-4 py-3">{c.comercial}</td> */}
+                    {/* <td className="px-4 py-3 text-gray-400">{new Date(c.fecha_registro).toLocaleDateString()}</td> */}
                   </tr>
                 ))
               )}
