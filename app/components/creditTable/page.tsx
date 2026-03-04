@@ -23,6 +23,7 @@ export default function CreditList() {
   const [filtro, setFiltro] = useState("");
   const [ordenCampo, setOrdenCampo] = useState<OrdenCampo>("fecha_registro");
   const [ordenTipo, setOrdenTipo] = useState<OrdenTipo>("desc");
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const fetchCreditos = async () => {
     setLoading(true);
@@ -33,7 +34,7 @@ export default function CreditList() {
       params.append("ordenCampo", ordenCampo);
       params.append("ordenTipo", ordenTipo);
 
-      const res = await fetch(`http://localhost:4000/api/creditos?${params.toString()}`);
+      const res = await fetch(`${API_URL}?${params.toString()}`);
       if (!res.ok) throw new Error(await res.text());
 
       const data: Credito[] = await res.json();
